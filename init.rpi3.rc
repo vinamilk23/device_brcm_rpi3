@@ -47,6 +47,15 @@ on boot
     setprop service.adb.tcp.port 5555
     start adbd
 
+on property:sys.boot_completed=1
+	start network_config
+
+service network_config /vendor/bin/ifconfig eth0 10.1.0.3 up
+    seclabel u:r:su:s0
+    user root
+    disabled
+    oneshot
+
 service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/vendor/etc/wifi/wpa_supplicant.conf \
     -I/vendor/etc/wifi/wpa_supplicant_overlay.conf \
