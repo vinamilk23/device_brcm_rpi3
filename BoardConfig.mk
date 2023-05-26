@@ -65,4 +65,7 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_SEPOLICY_DIRS := \
     device/brcm/rpi3/sepolicy
 
+# Enable linker namespaces (required for full Treble)
+BOARD_VNDK_VERSION := current
+
 DEVICE_MANIFEST_FILE := device/brcm/rpi3/manifest.xml
